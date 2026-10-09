@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a35">
+  <meta name="description" content="พักใจสักครู่ แล้วออกเดินทางผ่านสถานการณ์เล็ก ๆ เพื่อค้นพบวิธีที่คุณมองโลก">
+  <title>ใจในด่าน — เกมสำรวจตัวเอง</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="ใจในด่าน หน้าแรก">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span>ใจในด่าน</span>
+      </a>
+      <span class="top-note">เกมสำรวจตัวเอง · ไม่มีคำตอบผิด</span>
+    </header>
+
+    <main id="app" class="main-content">
+      <section id="home" class="screen home-screen" aria-labelledby="home-title">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="status-dot"></span> SAVE POINT 01 <span class="eyebrow-thai">จุดพักระหว่างทาง</span></div>
+          <h1 id="home-title">ระหว่างทาง<br>คุณเป็น <span>คนแบบไหน</span></h1>
+          <p class="intro">บางทีตัวเราอาจชัดขึ้น ในวันที่เจอเรื่องไม่คาดคิด<br>ลองเลือกทางที่เป็นคุณ แล้วเก็บการ์ดกลับไปอ่านใจตัวเอง</p>
+          <button id="start-button" class="button button-primary"><span>เริ่มออกเดินทาง</span><span aria-hidden="true">→</span></button>
+          <p class="fine-print">ใช้เวลาประมาณ 3 นาที · เล่นได้โดยไม่ต้องสมัคร</p>
+        </div>
+        <div class="hero-art" aria-label="ภาพการ์ตูนพิกเซลนักเดินทางตัวน้อยนั่งพักข้างกองไฟ">
+          <div class="sky-label">คืนนี้ · คืนที่ 07</div>
+          <div class="moon"></div><div class="star star-a">✦</div><div class="star star-b">✧</div>
+          <div class="hill hill-back"></div><div class="hill hill-front"></div>
+          <div class="camp"><span class="tent tent-left"></span><span class="tent tent-right"></span><span class="tent-door"></span></div>
+          <div class="fire"><i></i><b></b></div>
+          <div class="traveler"><span class="traveler-head"></span><span class="traveler-body"></span><span class="traveler-pack"></span></div>
+          <div class="art-caption">เก็บดาวที่หล่นหาย<br><small>THE INNER TRAIL</small></div>
+          <div class="pixel-spark spark-one">✦</div><div class="pixel-spark spark-two">·</div>
+        </div>
+        <div class="home-bottom"><span>01—15 <i>สถานการณ์สั้น ๆ</i></span><span>เลือก <b>1 ใน 3</b> ทาง</span><span>ปลายทาง <i>การ์ดบุคลิกของคุณ</i></span></div>
+      </section>
+
+      <section id="quiz" class="screen quiz-screen" aria-labelledby="question-title" hidden>
+        <div class="quiz-top"><button id="quit-button" class="text-button">← กลับจุดพัก</button><span id="question-count" class="question-count"></span></div>
+        <div class="progress-track" aria-label="ความคืบหน้า"><div id="progress-fill"></div></div>
+        <div class="scene-layout">
+          <div class="scene-art" aria-hidden="true"><div id="scene-icon" class="scene-icon">✦</div><div id="scene-label" class="scene-label">ระหว่างทาง</div><div class="scene-stars">· &nbsp; ✧ &nbsp; ·</div></div>
+          <div class="question-copy"><div class="eyebrow"><span class="status-dot"></span><span id="scene-kicker">สถานการณ์ตรงหน้า</span></div><h2 id="question-title"></h2><p id="question-context" class="question-context"></p><div id="choices" class="choices"></div></div>
+        </div>
+        <div class="quiz-footer"><span>ฟังเสียงข้างใน แล้วเลือกสิ่งที่ใกล้ตัวคุณที่สุด</span><span>คำตอบของคุณไม่มีถูกหรือผิด</span></div>
+      </section>
+
+      <section id="result" class="screen result-screen" aria-labelledby="result-heading" hidden>
+        <div class="result-heading"><div class="eyebrow"><span class="status-dot"></span> บันทึกจากการเดินทาง</div><h2 id="result-heading">นี่คือการ์ดของคุณ</h2><p>กดที่การ์ดเพื่อพลิกอ่านความหมาย</p></div>
+        <button id="flip-card" class="personality-card" aria-label="พลิกการ์ดเพื่ออ่านความหมาย" aria-pressed="false">
+          <span class="card-inner">
+            <span class="card-face card-front"><span class="card-corner">ใจในด่าน <b>✦</b></span><span class="card-art"><span class="card-orbit orbit-one"></span><span class="card-orbit orbit-two"></span><span class="card-moon"></span><span id="card-creature" class="card-creature">✦</span><span class="card-ground"></span><span class="card-spark">· &nbsp; ✧</span></span><span class="card-type-label">ผู้เดินทางแบบ</span><span id="result-name" class="card-name">นักเก็บแสง</span><span id="result-tagline" class="card-tagline">ชื่อเรียกสั้น ๆ</span><span class="card-bottom"><span>พลิกเพื่ออ่านความหมาย</span><span>★ ★ ★</span></span></span>
+            <span class="card-face card-back"><span class="card-corner">ใจในด่าน <b>✦</b></span><span class="back-symbol">✧</span><span class="back-label">สิ่งที่การ์ดใบนี้บอก</span><span id="result-description" class="back-description"></span><span class="back-strength"><b>พลังที่คุณมี</b><span id="result-strength"></span></span><span class="back-reminder"><b>ลองชวนตัวเองคิด</b><span id="result-reflection"></span></span><span class="card-bottom"><span>ผลนี้สะท้อนคำตอบรอบนี้</span><span>↻</span></span></span>
+          </span>
+        </button>
+        <div class="result-actions"><button id="replay-button" class="button button-primary"><span>ออกเดินทางอีกครั้ง</span><span aria-hidden="true">↻</span></button><button id="share-button" class="button button-secondary">คัดลอกผลของฉัน</button></div>
+        <p id="share-note" class="share-note" aria-live="polite">บุคลิกของเราเปลี่ยนแปลงได้ตามช่วงเวลา การ์ดนี้เป็นเพียงกระจกบานหนึ่ง</p>
+      </section>
+    </main>
+    <footer class="site-footer"><span>ออกแบบมาเพื่อชวนมองตัวเอง · ไม่ใช่แบบทดสอบทางการแพทย์</span><span>© ใจในด่าน 2025</span></footer>
+  </div>
+</body>
+</html>
